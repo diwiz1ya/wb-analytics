@@ -1,0 +1,26 @@
+# Python
+backend/__pycache__/
+backend/venv/
+*.py[cod]
+__pycache__/
+*.sqlite3
+*.db
+
+# Node
+frontend/node_modules/
+frontend/.vite/
+
+# Logs & misc
+*.log
+*.env
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+
+# System
+.env
+*.bak
+*.swp
