@@ -6,8 +6,13 @@ export default function Filters({ onChange, minPrice, maxPrice }) {
   const [reviews, setReviews] = useState(0);
 
   useEffect(() => {
-    onChange({ minPrice: priceRange[0], maxPrice: priceRange[1], rating, reviews });
-  }, [priceRange, rating, reviews]);
+    onChange({
+      minPrice: priceRange[0],
+      maxPrice: priceRange[1],
+      rating,
+      reviews,
+    });
+  }, [priceRange, rating, reviews, onChange]);
 
   return (
     <div className="space-y-4 p-4 bg-white rounded shadow">
