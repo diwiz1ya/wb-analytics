@@ -1,23 +1,14 @@
 import React, { useState, useMemo } from "react";
 
 export default function Table({ data = [] }) {
-  // Если data не массив — показываем ошибку
-  if (!Array.isArray(data)) {
-    console.error("Ошибка: Table получил не массив data:", data);
-    return (
-      <div className="text-red-600 font-semibold mt-4">
-        ❌ Ошибка загрузки товаров.
-      </div>
-    );
-  }
-
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
 
   // Вычисляем отсортированный массив
   const sortedData = useMemo(() => {
-    if (!sortConfig.key) return data;
+    const list = Array.isArray(data) ? data : [];
+    if (!sortConfig.key) return list;
 
-    return [...data].sort((a, b) => {
+    return [...list].sort((a, b) => {
       const aVal = a[sortConfig.key];
       const bVal = b[sortConfig.key];
 
@@ -33,6 +24,16 @@ export default function Table({ data = [] }) {
       }
     });
   }, [data, sortConfig]);
+
+  // Если data не массив — показываем ошибку
+  if (!Array.isArray(data)) {
+    console.error("Ошибка: Table получил не массив data:", data);
+    return (
+      <div className="text-red-600 font-semibold mt-4">
+        ❌ Ошибка загрузки товаров.
+      </div>
+    );
+  }
 
   // Переключаем сортировку при клике
   const handleSort = (key) => {
